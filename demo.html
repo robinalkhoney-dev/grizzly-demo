@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grizzly Power Wash | Austin, TX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* colors */
+            --primary: #2b4c5e;
+            --primary-dark: #1e3745;
+            --accent: #d97736;
+            --text-dark: #2b3036;
+            --text-gray: #6b7782;
+            --bg-page: #faf9f6;
+            --bg-alt: #f2efe9;
+            --bg-white: #ffffff;
+            --bg-dark: #1b242b;
+            --border: #e4e0d7;
+            
+            /* spacing and layout */
+            --pad-section: 6rem 1.5rem;
+            --max-w: 1200px;
+            --radius: 12px;
+            --shadow: 0 8px 24px rgba(43, 76, 94, 0.05);
+        }
+
+        /* basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.65;
+            background-color: var(--bg-page);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        /* structure helpers */
+        .wrapper {
+            width: 100%;
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .pad-y {
+            padding: var(--pad-section);
+        }
+
+        .gray-bg { background-color: var(--bg-alt); }
+        .dark-bg { background-color: var(--bg-dark); }
+        
+        .grid-layout {
+            display: grid;
+            gap: 2.5rem;
+        }
+
+        .heading-block {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        .heading-block h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .heading-block p {
+            color: var(--text-gray);
+            font-size: 1.125rem;
+        }
+
+        /* buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 1.75rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.25s ease;
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .action-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .action-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(43, 76, 94, 0.2);
+        }
+
+        .big-btn {
+            padding: 1.1rem 2.25rem;
+            font-size: 1.125rem;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+
+        /* top nav */
+        .top-nav {
+            background-color: rgba(250, 249, 246, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .menu-links {
+            display: none;
+            flex-direction: column;
+            gap: 1.25rem;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--bg-page);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        }
+
+        .menu-links.show {
+            display: flex;
+        }
+
+        .menu-links a:not(.btn) {
+            font-weight: 500;
+            color: var(--text-dark);
+            padding: 0.25rem 0;
+        }
+
+        .menu-links a:not(.btn):hover {
+            color: var(--primary);
+        }
+
+        .burger {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0.5rem;
+        }
+
+        .burger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-dark);
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* main banner */
+        .banner {
+            position: relative;
+            padding: 7rem 1.5rem;
+            text-align: center;
+            background-color: var(--bg-dark);
+            background-image: linear-gradient(rgba(27, 36, 43, 0.75), rgba(27, 36, 43, 0.85)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%232b3036" width="100" height="100"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .banner-text {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+        }
+
+        .banner h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .banner p {
+            font-size: 1.25rem;
+            margin-bottom: 2.25rem;
+            color: #e2e8f0;
+            font-weight: 400;
+        }
+
+        /* service boxes */
+        .service-box {
+            background: var(--bg-white);
+            padding: 2.25rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(43, 76, 94, 0.08);
+        }
+
+        .service-box h3 {
+            margin-bottom: 0.85rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .service-box p {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        /* conveyer belt like movement */
+        .scrolling-area {
+            overflow: hidden;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .slider-window {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 1rem 0 2rem 0;
+            /* smooth fade on the edges */
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        }
+
+        .track {
+            display: flex;
+            gap: 1.75rem;
+            width: max-content;
+        }
+
+        .track.reviews-loop {
+            animation: moveBelt 45s linear infinite;
+        }
+
+        .track.gallery-loop {
+            animation: moveBelt 30s linear infinite;
+        }
+
+        .track:hover {
+            animation-play-state: paused;
+        }
+
+        /* gallery pics */
+        .pic-card {
+            width: 320px;
+            flex-shrink: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .dummy-img {
+            background-color: #e9e5dd;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-weight: 500;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        /* reviews */
+        .feedback-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            width: 360px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+        }
+
+        .rating {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .quote {
+            font-size: 0.975rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .client-name {
+            font-weight: 600;
+            color: var(--primary);
+            font-style: normal;
+            font-size: 0.95rem;
+        }
+
+        @keyframes moveBelt {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* features list */
+        .perk {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .perk h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .perk p {
+            color: var(--text-gray);
+            font-size: 0.975rem;
+        }
+
+        /* contact area */
+        .contact-wrap {
+            padding: 2rem 0;
+        }
+
+        .contact-box {
+            background-color: var(--bg-dark);
+            color: white;
+            border-radius: calc(var(--radius) * 2);
+            padding: 4rem 2.5rem;
+            box-shadow: 0 16px 40px rgba(27, 36, 43, 0.15);
+        }
+
+        .contact-split {
+            gap: 4rem;
+        }
+
+        .contact-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.25rem;
+            color: white;
+            line-height: 1.25;
+        }
+
+        .contact-text p {
+            color: #b0bec5;
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        .contact-links {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .contact-links p {
+            color: white;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-links strong {
+            color: #d1d9e0;
+            min-width: 80px;
+        }
+
+        .form-area {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius);
+            color: var(--text-dark);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.2);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.925rem;
+            color: var(--text-dark);
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 0.9rem 1.1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 76, 94, 0.12);
+        }
+
+        /* footer */
+        .site-footer {
+            background-color: #141b21;
+            color: white;
+            padding-top: 4rem;
+            margin-top: 5rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 0 1.5rem 3.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo p {
+            color: #90a4ae;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-nav a {
+            color: #cfd8dc;
+        }
+
+        .footer-nav a:hover {
+            color: white;
+        }
+
+        .footer-credits {
+            border-top: 1px solid #263238;
+            padding: 1.5rem;
+            text-align: center;
+            color: #90a4ae;
+            font-size: 0.875rem;
+        }
+
+        /* media queries for bigger screens */
+        @media (min-width: 768px) {
+            .banner {
+                padding: 9rem 2rem;
+            }
+
+            .banner h1 {
+                font-size: 3.5rem;
+            }
+
+            .services-grid,
+            .perks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-split {
+                grid-template-columns: 1fr 1.1fr;
+                align-items: center;
+            }
+
+            .footer-inner {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+
+            .footer-nav {
+                flex-direction: row;
+                gap: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .burger {
+                display: none;
+            }
+
+            .menu-links {
+                display: flex;
+                flex-direction: row;
+                gap: 2.25rem;
+                position: static;
+                width: auto;
+                background: transparent;
+                padding: 0;
+                border-bottom: none;
+                box-shadow: none;
+                align-items: center;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .perks-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="wrapper nav-inner">
+            <a href="#" class="brand-logo">Grizzly Power Wash</a>
+            <button class="burger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+                <a href="#contact" class="btn action-btn">Request a Free Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="banner">
+        <div class="wrapper banner-text">
+            <h1>Restore Your Property's True Curb Appeal</h1>
+            <p>Professional, reliable pressure washing services for homeowners and businesses across Austin, Texas.</p>
+            <a href="#contact" class="btn action-btn big-btn">Request a Free Quote</a>
+        </div>
+    </header>
+
+    <section id="services" class="pad-y gray-bg">
+        <div class="wrapper">
+            <div class="heading-block">
+                <h2>Our Services</h2>
+                <p>Comprehensive exterior cleaning solutions tailored for Austin properties.</p>
+            </div>
+            <div class="grid-layout services-grid">
+                <div class="service-box">
+                    <h3>House Washing</h3>
+                    <p>Safe, low-pressure soft washing to remove dirt, algae, and grime without damaging your siding.</p>
+                </div>
+                <div class="service-box">
+                    <h3>Driveway Cleaning</h3>
+                    <p>High-pressure surface cleaning to eliminate tire marks, oil stains, and buildup from concrete.</p>
+                </div>
+                <div class="service-box">
+                    <h3>Sidewalk Cleaning</h3>
+                    <p>Restore walkways to a bright, welcoming appearance while removing slip hazards.</p>
+                </div>
+                <div class="service-box">
+                    <h3>Commercial Washing</h3>
+                    <p>Maintain a pristine storefront or facility to leave a lasting positive impression on your customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="pad-y scrolling-area">
+        <div class="wrapper">
+            <div class="heading-block">
+                <h2>Before & After</h2>
+                <p>See the difference professional equipment and expertise make.</p>
+            </div>
+        </div>
+
+        <div class="slider-window">
+            <div class="track gallery-loop">
+                
+                <div class="pic-card">
+                    <div class="dummy-img">Before / After Image 1</div>
+                </div>
+                <div class="pic-card">
+                    <div class="dummy-img">Before / After Image 2</div>
+                </div>
+                <div class="pic-card">
+                    <div class="dummy-img">Before / After Image 3</div>
+                </div>
+                <div class="pic-card">
+                    <div class="dummy-img">Before / After Image 4</div>
+                </div>
+
+                <div class="pic-card">
+                    <div class="dummy-img">Before / After Image 1</div>
+                </div>
+                <div class="pic-card">
+                    <div class="dummy-img">Before / After Image 2</div>
+                </div>
+                <div class="pic-card">
+                    <div class="dummy-img">Before / After Image 3</div>
+                </div>
+                <div class="pic-card">
+                    <div class="dummy-img">Before / After Image 4</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="pad-y gray-bg">
+        <div class="wrapper">
+            <div class="heading-block">
+                <h2>Why Choose Grizzly</h2>
+                <p>We believe in doing the job right the first time, with respect for your property and time.</p>
+            </div>
+            <div class="grid-layout perks-grid">
+                <div class="perk">
+                    <h4>Professional Equipment</h4>
+                    <p>We use commercial-grade machinery and eco-friendly cleaning agents for optimal results.</p>
+                </div>
+                <div class="perk">
+                    <h4>Reliable Scheduling</h4>
+                    <p>We show up when we say we will. Your time is valuable, and we respect our commitments.</p>
+                </div>
+                <div class="perk">
+                    <h4>Quality Results</h4>
+                    <p>Our detail-oriented approach ensures a thorough clean that restores your exterior surfaces.</p>
+                </div>
+                <div class="perk">
+                    <h4>Customer Satisfaction</h4>
+                    <p>We communicate clearly from quote to completion to ensure you are entirely happy with the work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="pad-y scrolling-area">
+        <div class="wrapper">
+            <div class="heading-block">
+                <h2>What Our Customers Say</h2>
+                <p>Real feedback from local property owners across Austin.</p>
+            </div>
+        </div>
+
+        <div class="slider-window">
+            <div class="track reviews-loop">
+                
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"Extremely pleased by the work done by Grizzly! They were very flexible around my schedule and left my driveway looking brand new! I highly recommend them for all your power wash needs!"</p>
+                    </div>
+                    <p class="client-name">— Xavier Torres</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"I hired Hill Country Power Wash to clean my driveway and sidewalk and I am so glad I did. Josh was great, very professional, and knowledgeable. It was very easy to set up the appointment and they confirmed when they were coming. But best of all were the results. It was night and day. I highly recommend using this company."</p>
+                    </div>
+                    <p class="client-name">— Marc Hernandez</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"Josh was great to work with. Very responsive. Gave me a price (a good one) right away and came out to perform the work very promptly. I was blown away by his equipment. This dude is a professional. He has a whole truck of professional power wash equipment. He is not some guy pulling around a rolling gas powered pressure washer. He’s using long hoses on professional truck-mounted equipment. He had a problem with a hose and was not able to complete the job. He came back once his Eqpt was fixed and completed the job at a mutually agreed upon time. Overall I was impressed and decided to write this review. I’d use him again without a doubt!"</p>
+                    </div>
+                    <p class="client-name">— Mark Baker</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"Josh did an amazing job power washing my driveway and sidewalks. He is very professional. He came as scheduled on time. I highly recommend Josh!"</p>
+                    </div>
+                    <p class="client-name">— Kim Breakey</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"Highly recommend Hill Country Power Wash. They were professional, communicative, and did a pre and post walk through ensuring our expectations were not only met, but exceeded. We will definitely be using them going forward."</p>
+                    </div>
+                    <p class="client-name">— Andrea Thomas</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"Josh and the team at HCPW did great work for our business. Professional, prompt, thorough. Exactly what you want from an independent contractor. I'll be keeping his number and returning for more business."</p>
+                    </div>
+                    <p class="client-name">— Sean Kane</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"These guys were great. We had a lot of webs that were difficult on second story soffits and stucco. They took their time, going over each area multiple times until we were pleased with the result. They also took extra time discussing how we can prevent the webs in the future. All in all it was a very personal and professional experience. We will use them again!"</p>
+                    </div>
+                    <p class="client-name">— Nicole Neumann</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"Extremely pleased by the work done by Grizzly! They were very flexible around my schedule and left my driveway looking brand new! I highly recommend them for all your power wash needs!"</p>
+                    </div>
+                    <p class="client-name">— Xavier Torres</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"I hired Hill Country Power Wash to clean my driveway and sidewalk and I am so glad I did. Josh was great, very professional, and knowledgeable. It was very easy to set up the appointment and they confirmed when they were coming. But best of all were the results. It was night and day. I highly recommend using this company."</p>
+                    </div>
+                    <p class="client-name">— Marc Hernandez</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"Josh was great to work with. Very responsive. Gave me a price (a good one) right away and came out to perform the work very promptly. I was blown away by his equipment. This dude is a professional. He has a whole truck of professional power wash equipment. He is not some guy pulling around a rolling gas powered pressure washer. He’s using long hoses on professional truck-mounted equipment. He had a problem with a hose and was not able to complete the job. He came back once his Eqpt was fixed and completed the job at a mutually agreed upon time. Overall I was impressed and decided to write this review. I’d use him again without a doubt!"</p>
+                    </div>
+                    <p class="client-name">— Mark Baker</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"Josh did an amazing job power washing my driveway and sidewalks. He is very professional. He came as scheduled on time. I highly recommend Josh!"</p>
+                    </div>
+                    <p class="client-name">— Kim Breakey</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"Highly recommend Hill Country Power Wash. They were professional, communicative, and did a pre and post walk through ensuring our expectations were not only met, but exceeded. We will definitely be using them going forward."</p>
+                    </div>
+                    <p class="client-name">— Andrea Thomas</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"Josh and the team at HCPW did great work for our business. Professional, prompt, thorough. Exactly what you want from an independent contractor. I'll be keeping his number and returning for more business."</p>
+                    </div>
+                    <p class="client-name">— Sean Kane</p>
+                </div>
+
+                <div class="feedback-card">
+                    <div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"These guys were great. We had a lot of webs that were difficult on second story soffits and stucco. They took their time, going over each area multiple times until we were pleased with the result. They also took extra time discussing how we can prevent the webs in the future. All in all it was a very personal and professional experience. We will use them again!"</p>
+                    </div>
+                    <p class="client-name">— Nicole Neumann</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="wrapper contact-wrap">
+        <section id="contact" class="contact-box">
+            <div class="grid-layout contact-split">
+                <div class="contact-text">
+                    <h2>Ready to get started?</h2>
+                    <p>Contact us today for a free, no-obligation quote. We proudly serve homeowners and businesses across the greater Austin area.</p>
+                    <div class="contact-links">
+                        <p><strong>Phone:</strong> (512) 555-0148</p>
+                        <p><strong>Email:</strong> example@gmail.com</p>
+                        <p><strong>Location:</strong> Austin, Texas</p>
+                    </div>
+                </div>
+                <div class="form-area">
+                    <form onsubmit="event.preventDefault();">
+                        <div class="input-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required placeholder="Your Name">
+                        </div>
+                        <div class="input-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" required placeholder="(512) 555-0148">
+                        </div>
+                        <div class="input-group">
+                            <label for="service">Service Needed</label>
+                            <select id="service">
+                                <option value="house">House Washing</option>
+                                <option value="driveway">Driveway Cleaning</option>
+                                <option value="commercial">Commercial Services</option>
+                                <option value="other">Other / Multiple</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="message">Message (Optional)</label>
+                            <textarea id="message" rows="4" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="btn action-btn w-100">Request Quote</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="site-footer">
+        <div class="wrapper footer-inner">
+            <div class="footer-logo">
+                <h3>Grizzly Power Wash</h3>
+                <p>Professional exterior cleaning in Austin, TX.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; color: #cfd8dc;">(512) 555-0148 | example@gmail.com</p>
+            </div>
+            <div class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-credits">
+            <div class="wrapper">
+                <p>&copy; 2026 Grizzly Power Wash. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // grab the mobile menu elements
+            const toggleBtn = document.querySelector('.burger');
+            const navMenu = document.querySelector('.menu-links');
+
+            // toggle menu on button click
+            if (toggleBtn && navMenu) {
+                toggleBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('show');
+                });
+            }
+
+            // close the menu if they click a link
+            const links = document.querySelectorAll('.menu-links a');
+            links.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                    }
+                });
+            });
+            
+        });
+    </script>
+</body>
+</html>
