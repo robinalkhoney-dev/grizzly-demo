@@ -4,29 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grizzly Power Wash | Austin, TX</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            /* colors */
-            --primary: #2b4c5e;
-            --primary-dark: #1e3745;
-            --accent: #d97736;
-            --text-dark: #2b3036;
-            --text-gray: #6b7782;
-            --bg-page: #faf9f6;
-            --bg-alt: #f2efe9;
-            --bg-white: #ffffff;
-            --bg-dark: #1b242b;
-            --border: #e4e0d7;
+            --color-primary: #2b4c5e;       
+            --color-primary-hover: #1e3745; 
+            --color-accent: #d97736;        
             
-            /* spacing and layout */
-            --header-height: 75px;
-            --max-w: 1200px;
-            --radius: 12px;
-            --shadow: 0 8px 24px rgba(43, 76, 94, 0.05);
+            --bg-main: #faf9f6;             
+            --bg-alt: #f2efe9;              
+            --bg-dark: #1b242b;             
+            --bg-cards: #ffffff;            
+            
+            --text-main: #2b3036;           
+            --text-muted: #6b7782;          
+            
+            --border-radius: 12px;          
+            --site-max-width: 1320px;       
+            
+            --conveyor-speed: 160s;         
+            --transition-speed: 0.3s;       
         }
 
-        /* basic reset */
         * {
             margin: 0;
             padding: 0;
@@ -35,14 +36,15 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.65;
-            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.7;
+            background-color: var(--bg-main);
             -webkit-font-smoothing: antialiased;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             overflow-x: hidden;
+            text-align: center;
         }
 
         img {
@@ -51,47 +53,43 @@
             display: block;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s ease;
-        }
-
-        /* structure helpers */
         .wrapper {
             width: 100%;
-            max-width: var(--max-w);
+            max-width: var(--site-max-width);
             margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .grid-layout {
             display: grid;
-            gap: 2.5rem;
+            gap: 2rem;
+            width: 100%;
+            justify-content: center;
+            align-items: stretch;
         }
 
         .heading-block {
             text-align: center;
-            max-width: 680px;
+            max-width: 800px;
             margin: 0 auto 2.5rem auto;
         }
 
         .heading-block h2 {
-            font-size: 2.25rem;
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--text-dark);
+            margin-bottom: 1rem;
+            color: var(--text-main);
             letter-spacing: -0.02em;
         }
 
         .heading-block p {
-            color: var(--text-gray);
-            font-size: 1.125rem;
+            color: var(--text-muted);
+            font-size: 1.25rem;
         }
 
-        /* Clean Animated Underline for REAL */
         .highlight-real {
             font-weight: 800;
-            color: var(--text-dark);
+            color: var(--text-main);
             position: relative;
             display: inline-block;
         }
@@ -103,7 +101,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background-color: var(--accent);
+            background-color: var(--color-accent);
             border-radius: 2px;
             transform: scaleX(0);
             transform-origin: left;
@@ -114,7 +112,6 @@
             to { transform: scaleX(1); }
         }
 
-        /* page view switching system */
         main {
             flex: 1;
             display: flex;
@@ -125,16 +122,21 @@
             display: none;
             flex: 1;
             width: 100%;
-            padding: 3rem 1.5rem;
+            padding: 4rem 1.5rem 6rem 1.5rem;
             box-sizing: border-box;
             animation: fadeIn 0.3s ease-in-out;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        #page-services, #page-why-us, #page-reviews {
+            padding: 5.5rem 1.5rem;
+            justify-content: center;
         }
 
         .page-view.active {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         @keyframes fadeIn {
@@ -142,52 +144,50 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.85rem 1.75rem;
-            border-radius: var(--radius);
+            padding: 1.1rem 2.25rem;
+            border-radius: var(--border-radius);
             font-weight: 600;
             cursor: pointer;
             text-align: center;
-            transition: all 0.25s ease;
+            transition: all var(--transition-speed) ease;
             border: none;
             font-family: inherit;
-            font-size: 1rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            font-size: 1.1rem;
         }
 
         .action-btn {
-            background-color: var(--primary);
+            background-color: var(--color-primary);
             color: white;
+            box-shadow: 0 4px 12px rgba(43, 76, 94, 0.15);
         }
 
         .action-btn:hover {
-            background-color: var(--primary-dark);
+            background-color: var(--color-primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(43, 76, 94, 0.2);
+            box-shadow: 0 6px 16px rgba(43, 76, 94, 0.25);
         }
 
         .big-btn {
-            padding: 1.1rem 2.25rem;
-            font-size: 1.125rem;
+            padding: 1.35rem 3rem;
+            font-size: 1.25rem;
         }
 
         .w-100 {
             width: 100%;
         }
 
-        /* top nav */
         .top-nav {
             background-color: rgba(250, 249, 246, 0.98);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #e4e0d7;
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 0 1.5rem;
-            height: var(--header-height);
+            padding: 0 2rem;
+            height: 85px;
             display: flex;
             align-items: center;
         }
@@ -196,12 +196,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+            max-width: var(--site-max-width);
+            margin: 0 auto;
         }
 
         .brand-logo {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--color-primary);
             letter-spacing: -0.02em;
             cursor: pointer;
         }
@@ -214,10 +217,11 @@
             top: 100%;
             left: 0;
             width: 100%;
-            background: var(--bg-page);
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
+            background: var(--bg-main);
+            padding: 2rem;
+            border-bottom: 1px solid #e4e0d7;
             box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+            text-align: center;
         }
 
         .menu-links.show {
@@ -226,14 +230,16 @@
 
         .menu-links a:not(.btn) {
             font-weight: 500;
-            color: var(--text-dark);
-            padding: 0.25rem 0;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            padding: 0.5rem 0;
             cursor: pointer;
+            transition: color var(--transition-speed) ease;
         }
 
         .menu-links a:not(.btn):hover,
         .menu-links a.active:not(.btn) {
-            color: var(--primary);
+            color: var(--color-primary);
             font-weight: 700;
         }
 
@@ -249,14 +255,12 @@
 
         .burger span {
             display: block;
-            width: 24px;
+            width: 28px;
             height: 2px;
-            background-color: var(--text-dark);
-            transition: 0.3s;
+            background-color: var(--text-main);
             border-radius: 2px;
         }
 
-        /* home page */
         #page-home {
             background-color: var(--bg-dark);
             background-image: linear-gradient(rgba(27, 36, 43, 0.8), rgba(27, 36, 43, 0.85)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%232b3036" width="100" height="100"/></svg>');
@@ -264,61 +268,101 @@
             background-position: center;
             color: white;
             text-align: center;
+            min-height: calc(100vh - 85px);
+            justify-content: center;
         }
 
         .banner-text {
-            max-width: 780px;
-            padding: 2rem 1.5rem;
+            max-width: 960px;
+            padding: 4rem 2rem;
+            margin: 0 auto;
         }
 
         .banner-text h1 {
-            font-size: 2.75rem;
+            font-size: 4rem;
             font-weight: 700;
-            margin-bottom: 1.25rem;
-            line-height: 1.2;
+            margin-bottom: 1.75rem;
+            line-height: 1.15;
             letter-spacing: -0.02em;
         }
 
         .banner-text p {
-            font-size: 1.25rem;
-            margin-bottom: 2.25rem;
-            color: #e2e8f0;
+            font-size: 1.45rem;
+            margin-bottom: 3rem;
+            color: #cbd5e1;
             font-weight: 400;
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* service page */
         #page-services {
             background-color: var(--bg-alt);
         }
 
-        .service-box {
-            background: var(--bg-white);
-            padding: 2.25rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Square boxes for services and why-us */
+        .service-box, .perk {
+            background: var(--bg-cards);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #e4e0d7;
+            box-shadow: 0 10px 28px rgba(43, 76, 94, 0.06);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            text-align: center;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        .service-box:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(43, 76, 94, 0.08);
+        .service-box:hover, .perk:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 34px rgba(43, 76, 94, 0.1);
         }
 
-        .service-box h3 {
-            margin-bottom: 0.85rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary);
+        .service-box h3, .perk h4 {
+            margin-bottom: 0.75rem;
+            font-size: 1.45rem;
+            color: var(--color-primary);
         }
 
-        .service-box p {
-            color: var(--text-gray);
+        .service-box p, .perk p {
             font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
-        /* gallery page */
-        #page-gallery {
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .gallery-slot {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background-color: #e9e5dd;
+            border: 1px solid #e4e0d7;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+        }
+
+        .gallery-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #page-why-us {
+            background-color: var(--bg-alt);
+        }
+
+        #page-reviews {
             overflow: hidden;
             padding-left: 0;
             padding-right: 0;
@@ -328,114 +372,51 @@
             width: 100%;
             overflow: hidden;
             position: relative;
-            padding: 1rem 0 2rem 0;
+            padding: 2rem 0 3rem 0;
             mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
         }
 
         .track {
             display: flex;
-            gap: 1.75rem;
             width: max-content;
             will-change: transform;
         }
 
-        .track.reviews-loop {
-            animation: moveBelt 45s linear infinite;
+        .track-group {
+            display: flex;
+            gap: 2.25rem;
+            margin-right: 2.25rem;
+            flex-shrink: 0;
         }
 
-        .track.gallery-loop {
-            animation: moveBelt 35s linear infinite;
+        .track.reviews-loop {
+            animation: moveBelt var(--conveyor-speed) linear infinite;
         }
 
         .track:hover {
             animation-play-state: paused;
         }
 
-        .pic-card {
-            width: 320px;
-            flex-shrink: 0;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .dummy-img {
-            background-color: #e9e5dd;
-            height: 240px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-gray);
-            font-weight: 500;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-        }
-
-        /* why us page */
-        #page-why-us {
-            background-color: var(--bg-alt);
-        }
-
-        .perk {
-            background: var(--bg-white);
-            padding: 2rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-        }
-
-        .perk h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.6rem;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .perk p {
-            color: var(--text-gray);
-            font-size: 0.975rem;
-        }
-
-        /* reviews page */
-        #page-reviews {
-            overflow: hidden;
-            padding-left: 0;
-            padding-right: 0;
-        }
-
+        /* Review cards remain rectangular */
         .feedback-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem;
-            width: 360px;
+            background: var(--bg-cards);
+            border: 1px solid #e4e0d7;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            width: 400px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 28px rgba(43, 76, 94, 0.06);
+            text-align: center;
         }
 
-        .rating {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-        }
-
-        .quote {
-            font-size: 0.975rem;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
+        .feedback-card .quote {
+            font-size: 1.15rem;
+            margin-top: 1rem;
             line-height: 1.6;
-            font-style: italic;
-        }
-
-        .client-name {
-            font-weight: 600;
-            color: var(--primary);
-            font-style: normal;
-            font-size: 0.95rem;
         }
 
         @keyframes moveBelt {
@@ -443,69 +424,67 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* contact page */
         #page-contact {
-            background-color: var(--bg-page);
+            background-color: var(--bg-main);
         }
 
         .contact-box {
             background-color: var(--bg-dark);
             color: white;
-            border-radius: calc(var(--radius) * 2);
-            padding: 3.5rem 2.5rem;
-            box-shadow: 0 16px 40px rgba(27, 36, 43, 0.15);
+            border-radius: calc(var(--border-radius) * 1.5);
+            padding: 3.5rem 3rem;
             width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(27, 36, 43, 0.2);
+            text-align: left;
         }
 
         .contact-split {
             gap: 3rem;
         }
 
-        .contact-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
         .contact-text h2 {
-            font-size: 2.25rem;
+            font-size: 2.75rem;
             margin-bottom: 1.25rem;
             color: white;
-            line-height: 1.25;
+            line-height: 1.2;
+            text-align: left;
         }
 
         .contact-text p {
             color: #b0bec5;
-            font-size: 1.125rem;
-            line-height: 1.7;
+            font-size: 1.15rem;
+            text-align: left;
         }
 
         .contact-links {
             margin-top: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
+            gap: 1rem;
+            text-align: left;
         }
 
         .contact-links p {
             color: white;
-            font-size: 1.1rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
+            font-size: 1.05rem;
         }
 
         .contact-links strong {
             color: #d1d9e0;
-            min-width: 80px;
+            min-width: 90px;
         }
 
         .form-area {
             background: white;
-            padding: 2.5rem 2rem;
-            border-radius: var(--radius);
-            color: var(--text-dark);
-            box-shadow: 0 16px 36px rgba(0,0,0,0.2);
+            padding: 3rem 2.5rem;
+            border-radius: var(--border-radius);
+            color: var(--text-main);
+            text-align: left;
         }
 
         .input-group {
@@ -514,60 +493,45 @@
 
         .input-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
-            font-size: 0.925rem;
-            color: var(--text-dark);
+            font-size: 0.95rem;
         }
 
         .input-group input,
         .input-group select,
         .input-group textarea {
             width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--border);
+            padding: 0.85rem 1.1rem;
+            border: 1px solid #e4e0d7;
             border-radius: 8px;
             font-family: inherit;
             font-size: 1rem;
-            background-color: var(--bg-page);
-            color: var(--text-dark);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--bg-main);
+            transition: border-color var(--transition-speed) ease;
         }
 
         .input-group input:focus,
         .input-group select:focus,
         .input-group textarea:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: var(--color-primary);
             box-shadow: 0 0 0 3px rgba(43, 76, 94, 0.12);
         }
 
-        /* media queries */
         @media (min-width: 768px) {
-            .banner-text h1 {
-                font-size: 3.5rem;
-            }
-
-            .services-grid,
-            .perks-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .contact-split {
-                grid-template-columns: 1fr 1.1fr;
-                align-items: center;
-            }
+            .banner-text h1 { font-size: 4.5rem; }
+            .services-grid, .perks-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-split { grid-template-columns: 1fr 1.1fr; align-items: center; }
         }
 
         @media (min-width: 1024px) {
-            .burger {
-                display: none;
-            }
-
+            .burger { display: none; }
             .menu-links {
                 display: flex;
                 flex-direction: row;
-                gap: 2rem;
+                gap: 2.5rem;
                 position: static;
                 width: auto;
                 background: transparent;
@@ -576,27 +540,21 @@
                 box-shadow: none;
                 align-items: center;
             }
-
-            .services-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
-            .perks-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
+            .services-grid, .perks-grid { grid-template-columns: repeat(4, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); max-width: 900px; }
         }
     </style>
 </head>
 <body>
 
     <nav class="top-nav">
-        <div class="wrapper nav-inner">
-            <span class="brand-logo" onclick="navigateTo('home')">Grizzly Power Wash</span>
+        <div class="nav-inner">
+            <span class="brand-logo js-insert-company" onclick="navigateTo('home')">Loading...</span>
+            
             <button class="burger" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
+            
             <div class="menu-links">
                 <a onclick="navigateTo('home')" id="nav-home" class="active">Home</a>
                 <a onclick="navigateTo('services')" id="nav-services">Services</a>
@@ -604,7 +562,7 @@
                 <a onclick="navigateTo('why-us')" id="nav-why-us">Why Us</a>
                 <a onclick="navigateTo('reviews')" id="nav-reviews">Reviews</a>
                 <a onclick="navigateTo('contact')" id="nav-contact">Contact</a>
-                <a onclick="navigateTo('contact')" class="btn action-btn">Request a Free Quote</a>
+                <a onclick="navigateTo('contact')" class="btn action-btn js-insert-cta-text">Request Quote</a>
             </div>
         </div>
     </nav>
@@ -612,9 +570,9 @@
     <main>
         <section id="page-home" class="page-view active">
             <div class="wrapper banner-text">
-                <h1>Restore Your Property's True Curb Appeal</h1>
-                <p>Professional, reliable pressure washing services for homeowners and businesses across Austin, Texas.</p>
-                <button onclick="navigateTo('contact')" class="btn action-btn big-btn">Request a Free Quote</button>
+                <h1 class="js-insert-hero-title">Loading Title...</h1>
+                <p class="js-insert-hero-sub">Loading Subtitle...</p>
+                <button onclick="navigateTo('contact')" class="btn action-btn big-btn js-insert-cta-text">Request Quote</button>
             </div>
         </section>
 
@@ -622,7 +580,7 @@
             <div class="wrapper">
                 <div class="heading-block">
                     <h2>Our Services</h2>
-                    <p>Comprehensive exterior cleaning solutions tailored for Austin properties.</p>
+                    <p>Comprehensive exterior cleaning solutions for properties in <span class="js-insert-location">Austin</span>.</p>
                 </div>
                 <div class="grid-layout services-grid">
                     <div class="service-box">
@@ -651,19 +609,12 @@
                     <h2>Before & After</h2>
                     <p>See the difference professional equipment and expertise make.</p>
                 </div>
-            </div>
-
-            <div class="slider-window">
-                <div class="track gallery-loop">
-                    <div class="pic-card"><div class="dummy-img">Before / After Image 1</div></div>
-                    <div class="pic-card"><div class="dummy-img">Before / After Image 2</div></div>
-                    <div class="pic-card"><div class="dummy-img">Before / After Image 3</div></div>
-                    <div class="pic-card"><div class="dummy-img">Before / After Image 4</div></div>
-                    
-                    <div class="pic-card"><div class="dummy-img">Before / After Image 1</div></div>
-                    <div class="pic-card"><div class="dummy-img">Before / After Image 2</div></div>
-                    <div class="pic-card"><div class="dummy-img">Before / After Image 3</div></div>
-                    <div class="pic-card"><div class="dummy-img">Before / After Image 4</div></div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-slot"><img src="" alt="Before and After 1"></div>
+                    <div class="gallery-slot"><img src="" alt="Before and After 2"></div>
+                    <div class="gallery-slot"><img src="" alt="Before and After 3"></div>
+                    <div class="gallery-slot"><img src="" alt="Before and After 4"></div>
                 </div>
             </div>
         </section>
@@ -671,7 +622,7 @@
         <section id="page-why-us" class="page-view">
             <div class="wrapper">
                 <div class="heading-block">
-                    <h2>Why Choose Grizzly</h2>
+                    <h2>Why Choose <span class="js-insert-company">Us</span></h2>
                     <p>We believe in doing the job right the first time, with respect for your property and time.</p>
                 </div>
                 <div class="grid-layout perks-grid">
@@ -699,7 +650,7 @@
             <div class="wrapper">
                 <div class="heading-block">
                     <h2>What Our Customers Say</h2>
-                    <p><span class="highlight-real">REAL</span> feedback from Austin residents.</p>
+                    <p><span class="highlight-real">REAL</span> feedback from our community.</p>
                 </div>
             </div>
 
@@ -708,49 +659,57 @@
                     <div class="feedback-card">
                         <div>
                             <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="quote">"Extremely pleased by the work done by Grizzly! They were very flexible around my schedule and left my driveway looking brand new! I highly recommend them for all your power wash needs!"</p>
+                            <p class="quote">"Grizzly Power Wash was very professional. They arrived on time and started promptly. When they were done everything looked immaculate. Would call them again for anything I need cleaned."</p>
                         </div>
-                        <p class="client-name">— Xavier Torres</p>
+                        <p style="font-weight: 600; color: var(--color-primary); margin-top: 1.25rem;">— Richard Walter</p>
                     </div>
 
                     <div class="feedback-card">
                         <div>
                             <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="quote">"I hired Hill Country Power Wash to clean my driveway and sidewalk and I am so glad I did. Josh was great, very professional, and knowledgeable."</p>
+                            <p class="quote">"Highly recommend Grizzly Power Wash. They were professional, communicative, and did a pre and post walk through ensuring our expectations were not only met, but exceeded. We will definitely be using them going forward."</p>
                         </div>
-                        <p class="client-name">— Marc Hernandez</p>
+                        <p style="font-weight: 600; color: var(--color-primary); margin-top: 1.25rem;">— Andrea Thomas</p>
                     </div>
 
                     <div class="feedback-card">
                         <div>
                             <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="quote">"Josh was great to work with. Very responsive. Gave me a price right away and came out to perform the work very promptly. Professional truck-mounted equipment!"</p>
+                            <p class="quote">"Josh and the team at Grizzly Power Wash did great work for our business. Professional, prompt, thorough. Exactly what you want from an independent contractor. I'll be keeping his number and returning for more business."</p>
                         </div>
-                        <p class="client-name">— Mark Baker</p>
+                        <p style="font-weight: 600; color: var(--color-primary); margin-top: 1.25rem;">— Sean Kane</p>
                     </div>
 
                     <div class="feedback-card">
                         <div>
                             <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="quote">"Josh did an amazing job power washing my driveway and sidewalks. He is very professional. He came as scheduled on time. I highly recommend Josh!"</p>
+                            <p class="quote">"These guys were great. We had a lot of webs that were difficult on second story soffits and stucco. They took their time, going over each area multiple times until we were pleased with the result. They also took extra time discussing how we can prevent the webs in the future. All in all, it was a very personal and professional experience. We will use them again!"</p>
                         </div>
-                        <p class="client-name">— Kim Breakey</p>
+                        <p style="font-weight: 600; color: var(--color-primary); margin-top: 1.25rem;">— Nicole Neumann</p>
                     </div>
 
                     <div class="feedback-card">
                         <div>
                             <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="quote">"Extremely pleased by the work done by Grizzly! They were very flexible around my schedule and left my driveway looking brand new!"</p>
+                            <p class="quote">"Great services rendered by this business! I sent an email and then eventually text since I am hard of hearing and cannot hear on the phone very well. I asked him to service my mothers property and my mom was pleased with his work. Reliable and fast response, the price was also amazing for his quality. I highly recommend!"</p>
                         </div>
-                        <p class="client-name">— Xavier Torres</p>
+                        <p style="font-weight: 600; color: var(--color-primary); margin-top: 1.25rem;">— Ash Walt</p>
                     </div>
 
                     <div class="feedback-card">
                         <div>
                             <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="quote">"I hired Hill Country Power Wash to clean my driveway and sidewalk and I am so glad I did. Best of all were the results. It was night and day."</p>
+                            <p class="quote">"Josh was amazing! High quality, thorough, on time, and got the job done right. It was easy to get booked as well. Highly recommend."</p>
                         </div>
-                        <p class="client-name">— Marc Hernandez</p>
+                        <p style="font-weight: 600; color: var(--color-primary); margin-top: 1.25rem;">— Chandler Bolt</p>
+                    </div>
+
+                    <div class="feedback-card">
+                        <div>
+                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <p class="quote">"Thank you Grizzly Power Wash for doing such an amazing job on my driveway and walkway. You were very helpful and answered all my questions. I will definitely recommend you to all my family and friends!!"</p>
+                        </div>
+                        <p style="font-weight: 600; color: var(--color-primary); margin-top: 1.25rem;">— Michelle Bajorek</p>
                     </div>
                 </div>
             </div>
@@ -762,15 +721,17 @@
                     <div class="grid-layout contact-split">
                         <div class="contact-text">
                             <h2>Ready to get started?</h2>
-                            <p>Contact us today for a free, no-obligation quote. We proudly serve homeowners and businesses across the greater Austin area.</p>
+                            <p>Contact us today for a free, no-obligation quote. We proudly serve homeowners and businesses across <span class="js-insert-location">Austin, Texas</span>.</p>
+                            
                             <div class="contact-links">
-                                <p><strong>Phone:</strong> (512) 555-0148</p>
-                                <p><strong>Email:</strong> example@gmail.com</p>
-                                <p><strong>Location:</strong> Austin, Texas</p>
+                                <p><strong>Phone:</strong> <span class="js-insert-phone">Loading...</span></p>
+                                <p><strong>Email:</strong> <span class="js-insert-email">Loading...</span></p>
+                                <p><strong>Location:</strong> <span class="js-insert-location">Loading...</span></p>
                             </div>
                         </div>
+                        
                         <div class="form-area">
-                            <form onsubmit="event.preventDefault();">
+                            <form onsubmit="event.preventDefault(); alert('Form logic goes here!');">
                                 <div class="input-group">
                                     <label for="name">Name</label>
                                     <input type="text" id="name" required placeholder="Your Name">
@@ -792,7 +753,7 @@
                                     <label for="message">Message (Optional)</label>
                                     <textarea id="message" rows="3" placeholder="Tell us about your project..."></textarea>
                                 </div>
-                                <button type="submit" class="btn action-btn w-100">Request Quote</button>
+                                <button type="submit" class="btn action-btn w-100 js-insert-cta-text">Request Quote</button>
                             </form>
                         </div>
                     </div>
@@ -802,37 +763,72 @@
     </main>
 
     <script>
+        const SITE_CONFIG = {
+            companyName: "Grizzly Power Wash",
+            phone: "(512) 555-0148",
+            email: "ifyouseethis@ireallyneedthisman.pleaseaccepttheoffer",
+            location: "Austin, Texas",
+            heroTitle: "Restore Your Property's True Curb Appeal",
+            heroSubtitle: "Professional, reliable pressure washing services for homeowners and businesses.",
+            callToActionButton: "Request a Free Quote" 
+        };
+
+        function injectConfigData() {
+            document.querySelectorAll('.js-insert-company').forEach(el => el.textContent = SITE_CONFIG.companyName);
+            document.querySelectorAll('.js-insert-phone').forEach(el => el.textContent = SITE_CONFIG.phone);
+            document.querySelectorAll('.js-insert-email').forEach(el => el.textContent = SITE_CONFIG.email);
+            document.querySelectorAll('.js-insert-location').forEach(el => el.textContent = SITE_CONFIG.location);
+            document.querySelectorAll('.js-insert-hero-title').forEach(el => el.textContent = SITE_CONFIG.heroTitle);
+            document.querySelectorAll('.js-insert-hero-sub').forEach(el => el.textContent = SITE_CONFIG.heroSubtitle);
+            document.querySelectorAll('.js-insert-cta-text').forEach(el => el.textContent = SITE_CONFIG.callToActionButton);
+        }
+
         function navigateTo(pageId) {
-            // hide all page views
             const pages = document.querySelectorAll('.page-view');
             pages.forEach(page => page.classList.remove('active'));
 
-            // show selected page
             const targetPage = document.getElementById('page-' + pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
+            if (targetPage) targetPage.classList.add('active');
 
-            // update active navbar state
             const navLinks = document.querySelectorAll('.menu-links a');
             navLinks.forEach(link => link.classList.remove('active'));
-
             const activeNav = document.getElementById('nav-' + pageId);
-            if (activeNav) {
-                activeNav.classList.add('active');
-            }
+            if (activeNav) activeNav.classList.add('active');
 
-            // close mobile menu if open
             const navMenu = document.querySelector('.menu-links');
             if (navMenu && navMenu.classList.contains('show')) {
                 navMenu.classList.remove('show');
             }
 
-            // reset scroll position to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function initInfiniteMarquees() {
+            const tracks = document.querySelectorAll('.track');
+
+            tracks.forEach(track => {
+                const cards = Array.from(track.children);
+                if (cards.length === 0) return;
+
+                track.innerHTML = '';
+
+                const groupA = document.createElement('div');
+                groupA.className = 'track-group';
+                
+                for (let i = 0; i < 4; i++) {
+                    cards.forEach(card => groupA.appendChild(card.cloneNode(true)));
+                }
+                track.appendChild(groupA);
+
+                const groupB = groupA.cloneNode(true);
+                track.appendChild(groupB);
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            injectConfigData();
+            initInfiniteMarquees();
+
             const toggleBtn = document.querySelector('.burger');
             const navMenu = document.querySelector('.menu-links');
 
